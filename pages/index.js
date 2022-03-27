@@ -7,17 +7,24 @@ import SectionCards from "../components/card/section-cards";
 import { getVideos } from "../lib/videos";
 
 export const getServerSideProps = async () => {
-  const disneyVideos = await getVideos();
+  const disneyVideos = await getVideos("disney trailer");
+  const productivityVideos = await getVideos("productivity");
+  const travelVideos = await getVideos("travel");
+  // const popularVideos = await getVideos("disney trailer");
 
   return {
     props: {
       disneyVideos,
+      productivityVideos,
+      travelVideos,
+      // popularVideos
     },
   };
 };
 
 export default function Home(props) {
-  const { disneyVideos } = props;
+  const { disneyVideos, productivityVideos, travelVideos, popularVideos } =
+    props;
   return (
     <div className={styles.container}>
       <Head>
@@ -35,7 +42,13 @@ export default function Home(props) {
       />
       <div className={styles.sectionWrapper}>
         <SectionCards title="Disney" videos={disneyVideos} size="large" />
-        <SectionCards title="Disney" videos={disneyVideos} size="medium" />
+        <SectionCards title="Travel" videos={travelVideos} size="small" />
+        <SectionCards
+          title="Productivity"
+          videos={productivityVideos}
+          size="medium"
+        />
+        <SectionCards title="Popular" videos={[]} size="small" />
       </div>
     </div>
   );
