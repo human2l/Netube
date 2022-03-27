@@ -6,6 +6,18 @@ import Card from "../components/card/card";
 import SectionCards from "../components/card/section-cards";
 
 export default function Home() {
+  const disneyVideos = [
+    {
+      imgUrl: "/static/clifford.webp",
+    },
+    {
+      imgUrl: "/static/clifford.webp",
+    },
+    {
+      imgUrl: "/static/clifford.webp",
+    },
+  ];
+
   return (
     <div className={styles.container}>
       <Head>
@@ -16,17 +28,15 @@ export default function Home() {
 
       <NavBar username="somebody" />
 
-      {/* <Navbar /> */}
       <Banner
         title="Clifford the red dog"
         subTitle="a very cute dog"
         imgUrl="/static/clifford.webp"
       />
-      <SectionCards title="Disney" />
-
-      <Card imgUrl="/static/clifford.webp" size="large" />
-      <Card imgUrl="/static/clifford.webp" size="medium" />
-      <Card imgUrl="/static/clifford.webp" size="small" />
+      <div className={styles.sectionWrapper}>
+        <SectionCards title="Disney" videos={disneyVideos} size="large" />
+        <SectionCards title="Disney" videos={disneyVideos} size="medium" />
+      </div>
     </div>
   );
 }
