@@ -4,7 +4,7 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 
 <img src="README.assets/Screen Shot 2022-03-26 at 2.52.56 PM.png" alt="Screen Shot 2022-03-26 at 2.52.56 PM" style="zoom:50%;" />
 
-
+<img src="README.assets/Screen Shot 2022-03-27 at 12.41.12 PM.png" alt="Screen Shot 2022-03-27 at 12.41.12 PM" style="zoom:50%;" />
 
 ## Getting Started
 
