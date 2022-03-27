@@ -9,12 +9,7 @@ const SectionCards = (props) => {
       <div className={styles.cardWrapper}>
         {videos.map((video, index) => {
           return (
-            <Card
-              key={`${title}-video${index}`}
-              id={index}
-              imgUrl="/static/clifford.webp"
-              size={size}
-            />
+            <Card key={video.id} id={index} imgUrl={video.imgUrl} size={size} />
           );
         })}
       </div>
