@@ -22,6 +22,19 @@ const NavBar = () => {
     e.preventDefault();
     setShowDropdown(!showDropdown);
   };
+
+  const handleSignout = async (e) => {
+    e.preventDefault();
+    try {
+      await magic.user.logout();
+      console.log(await magic.user.isLoggedIn()); // => `false`
+      router.push("/login");
+    } catch (err) {
+      console.error("Error logging out", err);
+      router.push("/login");
+    }
+  };
+
   useEffect(() => {
     const asyncFn = async () => {
       // Assumes a user is already logged in
@@ -75,9 +88,9 @@ const NavBar = () => {
             {showDropdown && (
               <div className={styles.navDropdown}>
                 <div>
-                  <Link href="/login">
-                    <a className={styles.linkName}>Sign out</a>
-                  </Link>
+                  <a onClick={handleSignout} className={styles.linkName}>
+                    Sign out
+                  </a>
                   <div className={styles.lineWrapper}></div>
                 </div>
               </div>
