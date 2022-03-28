@@ -3,27 +3,36 @@ import Image from "next/image";
 import { useState } from "react";
 import Router, { useRouter } from "next/router";
 import styles from "../styles/Login.module.css";
+import { createMagic } from "../lib/magic-client";
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [userMsg, setUserMsg] = useState("");
   const router = useRouter();
+
   const handleOnChangeEmail = (e) => {
     setUserMsg("");
     setEmail(e.target.value);
   };
-  const handleLoginWithEmail = (e) => {
+
+  const handleLoginWithEmail = async (e) => {
     e.preventDefault();
     if (!email) {
       setUserMsg("Please enter a valid email");
       return;
     }
-    //TODO change below to real email check
-    if (email !== "a") {
-      setUserMsg("Please enter a valid email");
-      return;
+    // log in a user by their email
+    try {
+      const magic = createMagic();
+      const didToken = await magic.auth.loginWithMagicLink({
+        email,
+      });
+      if (didToken) {
+        router.push("/");
+      }
+    } catch (error) {
+      console.error("Something went wrong logging in", error);
     }
-    router.push("/");
   };
 
   return (
