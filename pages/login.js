@@ -1,11 +1,13 @@
 import Head from "next/head";
 import Image from "next/image";
 import { useState } from "react";
+import Router, { useRouter } from "next/router";
 import styles from "../styles/Login.module.css";
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [userMsg, setUserMsg] = useState("");
+  const router = useRouter();
   const handleOnChangeEmail = (e) => {
     setUserMsg("");
     setEmail(e.target.value);
@@ -16,6 +18,12 @@ const Login = () => {
       setUserMsg("Please enter a valid email");
       return;
     }
+    //TODO change below to real email check
+    if (email !== "a") {
+      setUserMsg("Please enter a valid email");
+      return;
+    }
+    router.push("/");
   };
 
   return (
