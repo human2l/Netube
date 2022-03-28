@@ -1,7 +1,7 @@
 import Head from "next/head";
 import Image from "next/image";
-import { useState } from "react";
-import Router, { useRouter } from "next/router";
+import { useState, useEffect } from "react";
+import { useRouter } from "next/router";
 import styles from "../styles/Login.module.css";
 import { createMagic } from "../lib/magic-client";
 
@@ -30,7 +30,6 @@ const Login = () => {
       const didToken = await magic.auth.loginWithMagicLink({
         email,
       });
-      setIsLoading(false);
       if (didToken) {
         router.push("/");
       }
@@ -39,6 +38,18 @@ const Login = () => {
       console.error("Something went wrong logging in", error);
     }
   };
+
+  useEffect(() => {
+    const handleComplete = () => {
+      setIsLoading(false);
+    };
+    router.events.on("routeChangeComplete", handleComplete);
+    router.events.on("routeChangeError", handleComplete);
+    return () => {
+      router.events.off("routeChangeComplete", handleComplete);
+      router.events.off("routeChangeError", handleComplete);
+    };
+  }, [router.events]);
 
   return (
     <div className={styles.container}>
