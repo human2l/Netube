@@ -8,6 +8,7 @@ import { createMagic } from "../lib/magic-client";
 const Login = () => {
   const [email, setEmail] = useState("");
   const [userMsg, setUserMsg] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
   const router = useRouter();
 
   const handleOnChangeEmail = (e) => {
@@ -21,16 +22,20 @@ const Login = () => {
       setUserMsg("Please enter a valid email");
       return;
     }
+    //TODO validation
     // log in a user by their email
     try {
       const magic = createMagic();
+      setIsLoading(true);
       const didToken = await magic.auth.loginWithMagicLink({
         email,
       });
+      setIsLoading(false);
       if (didToken) {
         router.push("/");
       }
     } catch (error) {
+      setIsLoading(false);
       console.error("Something went wrong logging in", error);
     }
   };
@@ -65,7 +70,7 @@ const Login = () => {
           />
           <p className={styles.userMsg}>{userMsg}</p>
           <button onClick={handleLoginWithEmail} className={styles.loginBtn}>
-            Sign In
+            {isLoading ? "Loading..." : "Sign In"}
           </button>
         </div>
       </main>
