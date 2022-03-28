@@ -8,12 +8,12 @@ const Login = () => {
     console.log("loginwith email");
   };
   return (
-    <>
+    <div className={styles.container}>
       <Head>
         <title>Netube SignIn</title>
       </Head>
-      <div className={styles.headerWrapper}>
-        <header>
+      <header className={styles.header}>
+        <div className={styles.headerWrapper}>
           <a href="" className={styles.logoLink}>
             <div className={styles.logoWrapper}>
               <Image
@@ -24,21 +24,23 @@ const Login = () => {
               />
             </div>
           </a>
-          <main className={styles.main}>
-            <div className={styles.mainWrrapper}>
-              <h1>Sign In</h1>
-              <input
-                type="text"
-                placeholder="Email address"
-                className={styles.emailInput}
-              />
-              <p className={styles.userMsg}></p>
-              <button onClick={handleLoginWithEmail}>Sign In</button>
-            </div>
-          </main>
-        </header>
-      </div>
-    </>
+        </div>
+      </header>
+      <main className={styles.main}>
+        <div className={styles.mainWrapper}>
+          <h1 className={styles.signinHeader}>Sign In</h1>
+          <input
+            type="text"
+            placeholder="Email address"
+            className={styles.emailInput}
+          />
+          <p className={styles.userMsg}></p>
+          <button onClick={handleLoginWithEmail} className={styles.loginBtn}>
+            Sign In
+          </button>
+        </div>
+      </main>
+    </div>
   );
 };
 
