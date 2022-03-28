@@ -2,7 +2,6 @@ import Head from "next/head";
 import Banner from "../components/banner/banner";
 import NavBar from "../components/nav/navbar";
 import styles from "../styles/Home.module.css";
-import Card from "../components/card/card";
 import SectionCards from "../components/card/section-cards";
 import { getVideos, getPopularVideos } from "../lib/videos";
 
@@ -33,7 +32,7 @@ export default function Home(props) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <div className={styles.main}>
-        <NavBar username="somebody@google.com" />
+        <NavBar />
 
         <Banner
           title="Clifford the red dog"

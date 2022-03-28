@@ -3,7 +3,7 @@ import Image from "next/image";
 import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import styles from "../styles/Login.module.css";
-import { createMagic } from "../lib/magic-client";
+import { magic } from "../lib/magic-client";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -25,7 +25,6 @@ const Login = () => {
     //TODO validation
     // log in a user by their email
     try {
-      const magic = createMagic();
       setIsLoading(true);
       const didToken = await magic.auth.loginWithMagicLink({
         email,
