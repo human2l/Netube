@@ -1,0 +1,5 @@
+#
+GET https://youtube.googleapis.com/youtube/v3/search?part=snippet&q=productivity&maxResults=25&key={{youtubeDataAPIKey}} HTTP/1.1
+
+
+###
