@@ -27,7 +27,6 @@ const NavBar = () => {
     e.preventDefault();
     try {
       await magic.user.logout();
-      console.log(await magic.user.isLoggedIn()); // => `false`
       router.push("/login");
     } catch (err) {
       console.error("Error logging out", err);
@@ -36,7 +35,7 @@ const NavBar = () => {
   };
 
   useEffect(() => {
-    const asyncFn = async () => {
+    (async () => {
       // Assumes a user is already logged in
       try {
         const { email } = await magic.user.getMetadata();
@@ -48,8 +47,7 @@ const NavBar = () => {
       } catch (err) {
         console.error("Error retrieving email", err);
       }
-    };
-    asyncFn();
+    })();
   }, [router]);
 
   return (
