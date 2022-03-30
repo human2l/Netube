@@ -33,8 +33,9 @@ export default function Home(props) {
       </Head>
       <div className={styles.main}>
         <NavBar />
-
+        {/* TODO change videoId to real Id */}
         <Banner
+          videoId="gxc6y2ZVfCU"
           title="Clifford the red dog"
           subTitle="a very cute dog"
           imgUrl="/static/clifford.webp"
