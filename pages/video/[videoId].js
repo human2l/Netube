@@ -3,6 +3,7 @@ import Modal from "react-modal";
 import styles from "../../styles/Video.module.css";
 import cls from "classnames";
 import { getVideoById } from "../../lib/videos";
+import Navbar from "../../components/nav/navbar";
 
 Modal.setAppElement("#__next");
 
@@ -43,6 +44,7 @@ const Video = ({ video }) => {
   const videoId = router.query.videoId;
   return (
     <div className={styles.container}>
+      <Navbar />
       <Modal
         className={styles.modal}
         isOpen={true}
@@ -57,7 +59,7 @@ const Video = ({ video }) => {
           id="ytplayer"
           type="text/html"
           width="100%"
-          height="360"
+          height="480"
           src={`https://www.youtube.com/embed/${videoId}?autoplay=0&controls=0&rel=1&disablekb=1`}
           frameBorder="0"
         />
