@@ -2,18 +2,43 @@ import { useRouter } from "next/router";
 import Modal from "react-modal";
 import styles from "../../styles/Video.module.css";
 import cls from "classnames";
+import { getVideoById } from "../../lib/videos";
+
 Modal.setAppElement("#__next");
-const Video = () => {
-  const router = useRouter();
-  const video = {
-    title: "title",
-    publishTime: "pubtime",
-    description:
-      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatem, iste facilis consequuntur quo hic quasi nobis totam minima nisi. Saepe praesentium ab nesciunt aliquid dignissimos inventore recusandae sint autem vel! Lorem ipsum dolor, sit amet consectetur adipisicing elit. Soluta atque voluptates exercitationem voluptatibus dolores aspernatur! Minima eaque doloribus eos maxime esse ex, illo obcaecati incidunt dolore iusto reiciendis magni quae! Lorem ipsum dolor sit amet consectetur, adipisicing elit. At consequuntur facere error iure ad similique dicta accusantium, omnis enim sapiente reprehenderit repellat quaerat quo rem ea? Quis delectus laudantium molestiae!",
-    channelTitle: "channelTitle",
-    viewCount: 100,
+
+export const getStaticProps = async (ctx) => {
+  const videoId = ctx.params.videoId;
+  const videoArray = await getVideoById(videoId);
+  return {
+    props: {
+      video: videoArray.length > 0 ? videoArray[0] : {},
+    },
+    revalidate: 10, // In seconds
   };
-  const { title, publishTime, description, channelTitle, viewCount } = video;
+};
+
+export const getStaticPaths = async () => {
+  const listOfVideos = ["mYfJxlgR2jw", "4zH5iYM4wJo", "KCPEHsAViiQ"];
+  const paths = listOfVideos.map((videoId) => {
+    return {
+      params: { videoId },
+    };
+  });
+  return {
+    paths,
+    fallback: "blocking",
+  };
+};
+
+const Video = ({ video }) => {
+  const router = useRouter();
+  const {
+    title,
+    publishTime,
+    description,
+    channelTitle,
+    statistics: { viewCount },
+  } = video;
 
   const videoId = router.query.videoId;
   return (
@@ -33,7 +58,7 @@ const Video = () => {
           type="text/html"
           width="100%"
           height="360"
-          src={`https://www.youtube.com/embed/${videoId}?autoplay=0&origin=http://example.com&controls=0&rel=1&disablekb=1`}
+          src={`https://www.youtube.com/embed/${videoId}?autoplay=0&controls=0&rel=1&disablekb=1`}
           frameBorder="0"
         />
         <div className={styles.modalBody}>
