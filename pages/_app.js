@@ -6,19 +6,22 @@ import "../styles/globals.css";
 import Loading from "../components/loading/loading";
 
 function MyApp({ Component, pageProps }) {
-  const [isLoading, setIsLoading] = useState(true);
+  //TODO change isLoading default value to true
+  const [isLoading, setIsLoading] = useState(false);
   // const router = useRouter();
   //!!!Next.js has bug here, useRouter() can cause infinite loop because it is not memoized. Use "Router" as a temporary solution
   useEffect(() => {
-    const asyncFn = async () => {
+    (async () => {
       const isLoggedIn = await magic.user.isLoggedIn();
-      if (isLoggedIn) {
-        Router.push("/");
-      } else {
+      if (!isLoggedIn) {
         Router.push("/login");
       }
-    };
-    asyncFn();
+      // if (isLoggedIn) {
+      //   Router.push("/");
+      // } else {
+      //   Router.push("/login");
+      // }
+    })();
   }, []);
 
   useEffect(() => {
