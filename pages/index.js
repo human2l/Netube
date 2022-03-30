@@ -35,7 +35,7 @@ export default function Home(props) {
         <NavBar />
         {/* TODO change videoId to real Id */}
         <Banner
-          videoId="gxc6y2ZVfCU"
+          videoId="mYfJxlgR2jw"
           title="Clifford the red dog"
           subTitle="a very cute dog"
           imgUrl="/static/clifford.webp"

@@ -1,5 +1,10 @@
-#
+#Cost 100
 GET https://youtube.googleapis.com/youtube/v3/search?part=snippet&q=productivity&maxResults=25&key={{youtubeDataAPIKey}} HTTP/1.1
 
+
+###
+#Get video by Id
+#Cost 1
+GET https://youtube.googleapis.com/youtube/v3/videos?part=snippet%2CcontentDetails%2Cstatistics&id=mYfJxlgR2jw&key={{youtubeDataAPIKey}} HTTP/1.1
 
 ###
