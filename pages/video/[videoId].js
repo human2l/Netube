@@ -6,9 +6,9 @@ const Video = () => {
   const router = useRouter();
 
   return (
-    <div>
-      {router.query.videoId}
+    <div className={styles.container}>
       <Modal
+        className={styles.modal}
         isOpen={true}
         onRequestClose={() => {
           router.back();
