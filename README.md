@@ -14,6 +14,14 @@ SSR: Server Side Rendering
 
 <img src="README.assets/Screen Shot 2022-03-27 at 12.41.12 PM.png" alt="Screen Shot 2022-03-27 at 12.41.12 PM" style="zoom:50%;" />
 
+<img src="README.assets/Screen Shot 2022-03-31 at 10.02.38 PM.png" alt="Screen Shot 2022-03-31 at 10.02.38 PM" style="zoom:50%;" />
+
+Issuer is the user's Decentralized ID returned after the authentication process of Magic. 
+
+publicAddress is the public key of user.
+
+favourited: 1 for like, 2 for dislike.
+
 ## Getting Started
 
 First, run the development server:
