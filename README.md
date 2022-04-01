@@ -26,6 +26,8 @@ favourited: 1 for like, 2 for dislike.
 
 <img src="README.assets/Screen Shot 2022-04-01 at 7.25.02 PM.png" alt="Screen Shot 2022-04-01 at 7.25.02 PM" style="zoom:50%;" />
 
+<img src="README.assets/Screen Shot 2022-04-01 at 7.27.28 PM.png" alt="Screen Shot 2022-04-01 at 7.27.28 PM" style="zoom:50%;" />
+
 ## Authorization Architecture
 
 <img src="README.assets/Screen Shot 2022-04-01 at 1.11.59 PM.png" alt="Screen Shot 2022-04-01 at 1.11.59 PM" style="zoom:50%;" />
