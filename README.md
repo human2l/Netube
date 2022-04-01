@@ -22,6 +22,12 @@ publicAddress is the public key of user.
 
 favourited: 1 for like, 2 for dislike.
 
+## Authentication Architecture
+
+<img src="README.assets/Screen Shot 2022-04-01 at 7.25.02 PM.png" alt="Screen Shot 2022-04-01 at 7.25.02 PM" style="zoom:50%;" />
+
+## Authorization Architecture
+
 <img src="README.assets/Screen Shot 2022-04-01 at 1.11.59 PM.png" alt="Screen Shot 2022-04-01 at 1.11.59 PM" style="zoom:50%;" />
 
 <img src="README.assets/Screen Shot 2022-04-01 at 1.12.12 PM.png" alt="Screen Shot 2022-04-01 at 1.12.12 PM" style="zoom:50%;" />
