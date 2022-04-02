@@ -8,14 +8,18 @@ const login = async (req, res) => {
       const didToken = auth ? auth.substr(7) : "";
       // invoke Magic
       const metadata = await magicAdmin.users.getMetadataByToken(didToken);
-      console.log({ metadata });
 
       // create jwt
 
       const token = jwt.sign(
         {
           ...metadata,
-          iat: Math.floor(Date.now() / 1000),
+          /*!!! due to hasura hsa a bug when we send the jwt with iat: Date.now() it will gives back an "message: 'Could not verify JWT: JWTIssuedAtFuture'"
+          https://community.fly.io/t/hasura-on-fly-firebase-auth-jwtissuedatfuture-error/964
+            For now, we just set the iat to 1 minute before now
+              */
+          //TODO change iat time back to "now()" when hasura fixed bug above
+          iat: Math.floor(Date.now() / 1000 - 60),
           exp: Math.floor(Date.now() / 1000 + 7 * 24 * 60 * 60),
           "https://hasura.io/jwt/claims": {
             "x-hasura-allowed-roles": ["user", "admin"],
@@ -23,11 +27,8 @@ const login = async (req, res) => {
             "x-hasura-user-id": `${metadata.issuer}`,
           },
         },
-        process.env.JWT_SECRET_KEY
+        process.env.JWT_SECRET
       );
-      console.log({ token });
-
-      return res.send({ done: true });
     } catch (error) {
       console.log("Something went wrong logging in", error);
       return res.status(500).send({ done: false });
