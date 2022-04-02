@@ -6,8 +6,7 @@ import "../styles/globals.css";
 import Loading from "../components/loading/loading";
 
 function MyApp({ Component, pageProps }) {
-  //TODO change isLoading default value to true
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
   // const router = useRouter();
   //!!!Next.js has bug here, useRouter() can cause infinite loop because it is not memoized. Use "Router" as a temporary solution
   useEffect(() => {
@@ -16,11 +15,11 @@ function MyApp({ Component, pageProps }) {
       if (!isLoggedIn) {
         Router.push("/login");
       }
-      // if (isLoggedIn) {
-      //   Router.push("/");
-      // } else {
-      //   Router.push("/login");
-      // }
+      if (isLoggedIn) {
+        Router.push("/");
+      } else {
+        Router.push("/login");
+      }
     })();
   }, []);
 
