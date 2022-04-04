@@ -65,11 +65,20 @@ const Video = ({ video }) => {
           src={`https://www.youtube.com/embed/${videoId}?autoplay=0&controls=0&rel=1&disablekb=1`}
           frameBorder="0"
         />
-        <div className={styles.btnWrapper}>
-          <Like />
-        </div>
-        <div className={styles.btnWrapper}>
-          <DisLike />
+        <div className={styles.likeDislikeBtnWrapper}>
+          <div className={styles.likeBtnWrapper}>
+            <button>
+              <div className={styles.btnWrapper}>
+                <Like />
+              </div>
+            </button>
+          </div>
+
+          <button>
+            <div className={styles.btnWrapper}>
+              <DisLike />
+            </div>
+          </button>
         </div>
         <div className={styles.modalBody}>
           <div className={styles.modalBodyContent}>
