@@ -4,6 +4,8 @@ import styles from "../../styles/Video.module.css";
 import cls from "classnames";
 import { getVideoById } from "../../lib/videos";
 import Navbar from "../../components/nav/navbar";
+import Like from "../../components/icons/like-icon";
+import DisLike from "../../components/icons/dislike-icon";
 
 Modal.setAppElement("#__next");
 
@@ -63,6 +65,12 @@ const Video = ({ video }) => {
           src={`https://www.youtube.com/embed/${videoId}?autoplay=0&controls=0&rel=1&disablekb=1`}
           frameBorder="0"
         />
+        <div className={styles.btnWrapper}>
+          <Like />
+        </div>
+        <div className={styles.btnWrapper}>
+          <DisLike />
+        </div>
         <div className={styles.modalBody}>
           <div className={styles.modalBodyContent}>
             <div className={styles.col1}>
