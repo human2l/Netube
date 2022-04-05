@@ -11,3 +11,8 @@ GET https://youtube.googleapis.com/youtube/v3/videos?part=snippet%2CcontentDetai
 POST http://localhost:3000/api/login HTTP/1.1
 Authorization: Berear {{exampleDidToken}}
 ###
+
+#
+POST http://localhost:3000/api/stats HTTP/1.1
+
+###
