@@ -36,6 +36,7 @@ export const getStaticPaths = async () => {
 
 const Video = ({ video }) => {
   const router = useRouter();
+  const videoId = router.query.videoId;
   const [toggleLike, setToggleLike] = useState(false);
   const [toggleDislike, setToggleDislike] = useState(false);
   const {
@@ -46,17 +47,40 @@ const Video = ({ video }) => {
     statistics: { viewCount },
   } = video;
 
-  const handleToggleDislike = () => {
+  const handleToggleDislike = async () => {
+    const newToggleDislike = !toggleDislike;
     setToggleLike(toggleDislike);
-    setToggleDislike(!toggleDislike);
+    setToggleDislike(newToggleDislike);
+    const response = await fetch("/api/stats", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        videoId,
+        favourited: newToggleDislike ? 0 : 1,
+      }),
+    });
+    console.log("data", await response.json());
   };
 
-  const handleToggleLike = () => {
+  const handleToggleLike = async () => {
+    const newToggleLike = !toggleLike;
     setToggleDislike(toggleLike);
-    setToggleLike(!toggleLike);
+    setToggleLike(newToggleLike);
+    const response = await fetch("/api/stats", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        videoId,
+        favourited: newToggleLike ? 1 : 0,
+      }),
+    });
+    console.log("data", await response.json());
   };
 
-  const videoId = router.query.videoId;
   return (
     <div className={styles.container}>
       <Navbar />
