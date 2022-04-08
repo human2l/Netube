@@ -8,7 +8,7 @@ import {
 const stats = async (req, res) => {
   if (req.method === "POST") {
     try {
-      const videoId = req.query.videoId;
+      const { videoId, favourited, watched } = req.body;
       const token = req.cookies.token;
       if (!token) {
         return res.status(403).send({});
@@ -17,9 +17,6 @@ const stats = async (req, res) => {
       const userId = decodedToken.issuer;
       const foundVideoStats = await findOneVideoStats(userId, videoId, token);
       const statsExist = foundVideoStats?.data?.stats?.length > 0;
-      //TODO use real data: watched, favourited
-      const watched = false;
-      const favourited = 3;
       const stats = {
         userId,
         videoId,
