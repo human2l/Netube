@@ -51,34 +51,31 @@ const Video = ({ video }) => {
     const newToggleDislike = !toggleDislike;
     setToggleLike(toggleDislike);
     setToggleDislike(newToggleDislike);
-    const response = await fetch("/api/stats", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        videoId,
-        favourited: newToggleDislike ? 0 : 1,
-      }),
-    });
-    console.log("data", await response.json());
+    const favourited = newToggleDislike ? 0 : 1;
+    const response = await favouriteVideo(favourited);
+    // console.log(await response.json());
   };
 
   const handleToggleLike = async () => {
     const newToggleLike = !toggleLike;
     setToggleDislike(toggleLike);
     setToggleLike(newToggleLike);
-    const response = await fetch("/api/stats", {
+    const favourited = newToggleLike ? 1 : 0;
+    const response = await favouriteVideo(favourited);
+    // console.log(await response.json());
+  };
+
+  const favouriteVideo = async (favourited) => {
+    return await fetch("/api/stats", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
         videoId,
-        favourited: newToggleLike ? 1 : 0,
+        favourited,
       }),
     });
-    console.log("data", await response.json());
   };
 
   return (
