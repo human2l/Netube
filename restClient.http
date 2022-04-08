@@ -13,6 +13,6 @@ Authorization: Berear {{exampleDidToken}}
 ###
 
 #
-POST http://localhost:3000/api/stats HTTP/1.1
+POST http://localhost:3000/api/stats?videoId=4zH5iYM4wJo HTTP/1.1
 
 ###
