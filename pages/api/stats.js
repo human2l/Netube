@@ -1,5 +1,9 @@
 import jwt from "jsonwebtoken";
-import { findVideoByUserIdAndVideoId } from "../../lib/db/hasura";
+import {
+  createVideoStats,
+  findOneVideoStats,
+  updateVideoStats,
+} from "../../lib/db/hasura";
 
 const stats = async (req, res) => {
   if (req.method === "POST") {
@@ -10,18 +14,30 @@ const stats = async (req, res) => {
         return res.status(403).send({});
       }
       const decodedToken = jwt.verify(token, process.env.JWT_SECRET);
-      console.log({ decodedToken });
       const userId = decodedToken.issuer;
-      const findVideoId = await findVideoByUserIdAndVideoId(
+      const foundVideoStats = await findOneVideoStats(userId, videoId, token);
+      const statsExist = foundVideoStats?.data?.stats?.length > 0;
+      //TODO use real data: watched, favourited
+      const watched = false;
+      const favourited = 3;
+      const stats = {
         userId,
         videoId,
-        token
-      );
-
-      res.send({ message: "works", decodedToken, findVideoId });
+        watched,
+        favourited,
+      };
+      if (statsExist) {
+        // update stats
+        const response = await updateVideoStats(stats, token);
+        return res.send({ message: "works", decodedToken, response });
+      } else {
+        // add new stats
+        const response = await createVideoStats(stats, token);
+        return res.send({ message: "works", decodedToken, response });
+      }
     } catch (error) {
       console.error("Error occurred /stats", error);
-      res.status(500).send({ done: false, error: error?.message });
+      return res.status(500).send({ done: false, error: error?.message });
     }
   }
 };
