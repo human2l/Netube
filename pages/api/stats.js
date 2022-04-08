@@ -8,7 +8,10 @@ import {
 const stats = async (req, res) => {
   if (req.method === "POST") {
     try {
-      const { videoId, favourited, watched } = req.body;
+      const { videoId, favourited = 0, watched = true } = req.body;
+      if (!videoId) {
+        return res.send({ message: "invalid query" });
+      }
       const token = req.cookies.token;
       if (!token) {
         return res.status(403).send({});
@@ -26,11 +29,11 @@ const stats = async (req, res) => {
       if (statsExist) {
         // update stats
         const response = await updateVideoStats(stats, token);
-        return res.send({ message: "works", decodedToken, response });
+        return res.send({ data: response.data });
       } else {
         // add new stats
         const response = await createVideoStats(stats, token);
-        return res.send({ message: "works", decodedToken, response });
+        return res.send({ data: response.data });
       }
     } catch (error) {
       console.error("Error occurred /stats", error);
