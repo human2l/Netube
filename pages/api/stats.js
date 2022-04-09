@@ -7,7 +7,8 @@ import {
 
 const stats = async (req, res) => {
   try {
-    const { videoId } = req.body;
+    const inputParams = req.method === "GET" ? req.query : req.body;
+    const { videoId } = inputParams;
     if (!videoId) {
       return res.send({ message: "invalid query" });
     }
@@ -18,21 +19,21 @@ const stats = async (req, res) => {
     const decodedToken = jwt.verify(token, process.env.JWT_SECRET);
     const userId = decodedToken.issuer;
     const foundVideoStats = await findOneVideoStats(userId, videoId, token);
-    const statsExist = foundVideoStats?.length > 0;
 
     switch (req.method) {
       case "POST":
-        const { favourited = 0, watched = true } = req.body;
+        const { favourited = 0, watched = true } = inputParams;
         const stats = {
           userId,
           videoId,
           watched,
           favourited,
         };
-        return await postService(statsExist, stats, token, res);
+        return await postService(foundVideoStats, stats, token, res);
       case "GET":
-        return await getService(statsExist, foundVideoStats, res);
+        return await getService(foundVideoStats, res);
       default:
+        // method not allowed
         return res.status(405).send({});
     }
   } catch (error) {
@@ -41,8 +42,8 @@ const stats = async (req, res) => {
   }
 };
 
-const postService = async (statsExist, stats, token, res) => {
-  if (statsExist) {
+const postService = async (foundVideoStats, stats, token, res) => {
+  if (foundVideoStats) {
     // update stats
     const response = await updateVideoStats(stats, token);
     return res.send({ data: response.data });
@@ -53,8 +54,8 @@ const postService = async (statsExist, stats, token, res) => {
   }
 };
 
-const getService = async (statsExist, foundVideoStats, res) => {
-  statsExist ? res.send(foundVideoStats) : res.status(404).send([]);
+const getService = async (foundVideoStats, res) => {
+  foundVideoStats ? res.send(foundVideoStats) : res.status(404).send({});
 };
 
 export default stats;

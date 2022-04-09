@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import Modal from "react-modal";
 import styles from "../../styles/Video.module.css";
@@ -77,6 +77,23 @@ const Video = ({ video }) => {
       }),
     });
   };
+
+  useEffect(() => {
+    (async () => {
+      const response = await fetch(`/api/stats?videoId=${videoId}`, {
+        method: "GET",
+      });
+      if (!response.ok) return;
+      const data = await response.json();
+      if (data.favourited === 1) {
+        setToggleLike(true);
+        setToggleDislike(false);
+      } else if (data.favourited === 0) {
+        setToggleLike(false);
+        setToggleDislike(true);
+      }
+    })();
+  }, [videoId]);
 
   return (
     <div className={styles.container}>
