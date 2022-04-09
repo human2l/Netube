@@ -53,7 +53,7 @@ const NavBar = () => {
   return (
     <div className={styles.container}>
       <div className={styles.wrapper}>
-        <a href="" className={styles.logoLink}>
+        <a className={styles.logoLink} onClick={handleOnClickHome}>
           <div className={styles.logoWrapper}>
             <Image
               src={"/static/netube-large.png"}
