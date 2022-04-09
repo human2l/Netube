@@ -12,7 +12,7 @@ POST http://localhost:3000/api/login HTTP/1.1
 Authorization: Berear {{exampleDidToken}}
 ###
 
-#
+#Create or update videoStats
 POST http://localhost:3000/api/stats HTTP/1.1
 Content-Type: application/json
 
@@ -20,5 +20,13 @@ Content-Type: application/json
         "videoId":"pqdHP2dWQ9M",
         "watched":true,
         "favourited":3
+}
+###
+#get videoStats
+GET http://localhost:3000/api/stats HTTP/1.1
+Content-Type: application/json
+
+{
+        "videoId":"pqdHP2dWQ9M"
 }
 ###
