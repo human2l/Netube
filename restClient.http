@@ -17,17 +17,17 @@ POST http://localhost:3000/api/stats HTTP/1.1
 Content-Type: application/json
 
 {
-        "videoId":"pqdHP2dWQ9M",
+        "videoId":"togmdDHG3Pw",
         "watched":true,
         "favourited":3
 }
 ###
 
 #get videoStats
-GET http://localhost:3000/api/stats?videoId=pqdHP2dWQ9M HTTP/1.1
+GET http://localhost:3000/api/stats?videoId=togmdDHG3Pw HTTP/1.1
 ###
 
 #getWatchedVideos
-GET http://localhost:3000/api/stats?videoId=pqdHP2dWQ9M HTTP/1.1
+GET http://localhost:3000/api/stats HTTP/1.1
 
 ###

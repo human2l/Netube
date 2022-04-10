@@ -16,6 +16,7 @@ const stats = async (req, res) => {
     if (!token) {
       return res.status(403).send({});
     }
+
     const decodedToken = jwt.verify(token, process.env.JWT_SECRET);
     const userId = decodedToken.issuer;
     const foundVideoStats = await findOneVideoStats(userId, videoId, token);
