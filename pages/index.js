@@ -9,12 +9,10 @@ import {
   getWatchItAgainVideos,
 } from "../lib/videos";
 
-export const getServerSideProps = async () => {
+export const getServerSideProps = async (ctx) => {
   const userId = "did:ethr:0xCdfe8EF9086736823e3fe751F4239264c459B74a";
-  const token =
-    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3N1ZXIiOiJkaWQ6ZXRocjoweENkZmU4RUY5MDg2NzM2ODIzZTNmZTc1MUY0MjM5MjY0YzQ1OUI3NGEiLCJwdWJsaWNBZGRyZXNzIjoiMHhDZGZlOEVGOTA4NjczNjgyM2UzZmU3NTFGNDIzOTI2NGM0NTlCNzRhIiwiZW1haWwiOiJodW1hbjJsa2FpQGdtYWlsLmNvbSIsIm9hdXRoUHJvdmlkZXIiOm51bGwsInBob25lTnVtYmVyIjpudWxsLCJpYXQiOjE2NDk1NzI0OTYsImV4cCI6MTY1MDE3NzM1NiwiaHR0cHM6Ly9oYXN1cmEuaW8vand0L2NsYWltcyI6eyJ4LWhhc3VyYS1hbGxvd2VkLXJvbGVzIjpbInVzZXIiLCJhZG1pbiJdLCJ4LWhhc3VyYS1kZWZhdWx0LXJvbGUiOiJ1c2VyIiwieC1oYXN1cmEtdXNlci1pZCI6ImRpZDpldGhyOjB4Q2RmZThFRjkwODY3MzY4MjNlM2ZlNzUxRjQyMzkyNjRjNDU5Qjc0YSJ9fQ.w-t9nf53NcVxmRBJvrxWu9MbOY2vfmDsn904m0-KAqM";
+  const token = ctx.req.cookies.token;
   const watchItAgainVideos = await getWatchItAgainVideos(userId, token);
-  console.log(watchItAgainVideos);
   const disneyVideos = await getVideos("disney trailer");
   const productivityVideos = await getVideos("productivity");
   const travelVideos = await getVideos("travel");
@@ -57,11 +55,13 @@ export default function Home(props) {
         />
         <div className={styles.sectionWrapper}>
           <SectionCards title="Disney" videos={disneyVideos} size="large" />
-          <SectionCards
-            title="Watch it again"
-            videos={watchItAgainVideos}
-            size="small"
-          />
+          {watchItAgainVideos && (
+            <SectionCards
+              title="Watch it again"
+              videos={watchItAgainVideos}
+              size="small"
+            />
+          )}
           <SectionCards title="Travel" videos={travelVideos} size="small" />
           <SectionCards
             title="Productivity"
