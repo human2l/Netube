@@ -26,3 +26,8 @@ Content-Type: application/json
 #get videoStats
 GET http://localhost:3000/api/stats?videoId=pqdHP2dWQ9M HTTP/1.1
 ###
+
+#getWatchedVideos
+GET http://localhost:3000/api/stats?videoId=pqdHP2dWQ9M HTTP/1.1
+
+###

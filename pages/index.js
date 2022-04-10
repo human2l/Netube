@@ -3,9 +3,17 @@ import Banner from "../components/banner/banner";
 import NavBar from "../components/nav/navbar";
 import styles from "../styles/Home.module.css";
 import SectionCards from "../components/card/section-cards";
-import { getVideos, getPopularVideos } from "../lib/videos";
+import {
+  getVideos,
+  getPopularVideos,
+  getWatchItAgainVideos,
+} from "../lib/videos";
 
 export const getServerSideProps = async () => {
+  const userId = "";
+  const token = "";
+  const watchItAgainVideos = await getWatchItAgainVideos(userId, token);
+  console.log(watchItAgainVideos);
   const disneyVideos = await getVideos("disney trailer");
   const productivityVideos = await getVideos("productivity");
   const travelVideos = await getVideos("travel");
