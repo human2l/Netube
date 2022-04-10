@@ -17,7 +17,7 @@ const stats = async (req, res) => {
       return res.status(403).send({});
     }
 
-    const userId = verifyToken(token);
+    const userId = await verifyToken(token);
 
     const foundVideoStats = await findOneVideoStats(userId, videoId, token);
 

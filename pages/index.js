@@ -8,10 +8,11 @@ import {
   getPopularVideos,
   getWatchItAgainVideos,
 } from "../lib/videos";
+import { verifyToken } from "../lib/utils";
 
 export const getServerSideProps = async (ctx) => {
-  const userId = "did:ethr:0xCdfe8EF9086736823e3fe751F4239264c459B74a";
   const token = ctx.req.cookies.token;
+  const userId = await verifyToken(token);
   const watchItAgainVideos = await getWatchItAgainVideos(userId, token);
   const disneyVideos = await getVideos("disney trailer");
   const productivityVideos = await getVideos("productivity");
