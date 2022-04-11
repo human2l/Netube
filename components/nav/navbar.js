@@ -27,13 +27,15 @@ const NavBar = () => {
   const handleSignout = async (e) => {
     e.preventDefault();
     try {
-      await fetch("/api/logout", {
+      const response = await fetch("/api/logout", {
         method: "POST",
         headers: {
           Authorization: `Bearer ${didToken}`,
           "Content-Type": "application/json",
         },
       });
+
+      response.ok && router.push("/login");
     } catch (error) {
       console.error("Error logging out", error);
     }

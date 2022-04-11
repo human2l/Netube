@@ -7,10 +7,6 @@ GET https://youtube.googleapis.com/youtube/v3/search?part=snippet&q=productivity
 #Cost 1
 GET https://youtube.googleapis.com/youtube/v3/videos?part=snippet%2CcontentDetails%2Cstatistics&id=mYfJxlgR2jw&key={{youtubeDataAPIKey}} HTTP/1.1
 ###
-#
-POST http://localhost:3000/api/login HTTP/1.1
-Authorization: Berear {{exampleDidToken}}
-###
 
 #Create or update videoStats
 POST http://localhost:3000/api/stats HTTP/1.1
@@ -29,5 +25,13 @@ GET http://localhost:3000/api/stats?videoId=togmdDHG3Pw HTTP/1.1
 
 #getWatchedVideos
 GET http://localhost:3000/api/stats HTTP/1.1
+###
 
+#
+POST http://localhost:3000/api/login HTTP/1.1
+Authorization: Berear {{exampleDidToken}}
+###
+#logout
+POST http://localhost:3000/api/logout HTTP/1.1
+Authorization: Berear {{exampleDidToken}}
 ###
