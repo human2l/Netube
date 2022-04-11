@@ -8,6 +8,7 @@ import { magic } from "../../lib/magic-client";
 const NavBar = () => {
   const [username, setUsername] = useState("");
   const [showDropdown, setShowDropdown] = useState(false);
+  const [didToken, setDidToken] = useState("");
   const router = useRouter();
   const handleOnClickHome = (e) => {
     e.preventDefault();
@@ -26,11 +27,15 @@ const NavBar = () => {
   const handleSignout = async (e) => {
     e.preventDefault();
     try {
-      await magic.user.logout();
-      router.push("/login");
-    } catch (err) {
-      console.error("Error logging out", err);
-      router.push("/login");
+      await fetch("/api/logout", {
+        method: "POST",
+        headers: {
+          Authorization: `Bearer ${didToken}`,
+          "Content-Type": "application/json",
+        },
+      });
+    } catch (error) {
+      console.error("Error logging out", error);
     }
   };
 
@@ -39,11 +44,13 @@ const NavBar = () => {
       // Assumes a user is already logged in
       try {
         const { email } = await magic.user.getMetadata();
+        const didToken = await magic.user.getIdToken();
         if (!email) {
           router.push("/login");
           return;
         }
         setUsername(email);
+        setDidToken(didToken);
       } catch (err) {
         console.error("Error retrieving email", err);
       }
