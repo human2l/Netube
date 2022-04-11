@@ -31,7 +31,13 @@ const MyList = (props) => {
       <main className={styles.main}>
         <NavBar />
         <div className={styles.sectionWrapper}>
-          <SectionCards title="My List" videos={myListVideos} size="small" />
+          <SectionCards
+            title="My List"
+            videos={myListVideos}
+            size="small"
+            wrap
+            shouldScale={false}
+          />
         </div>
       </main>
     </div>
