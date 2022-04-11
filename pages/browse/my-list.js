@@ -1,7 +1,7 @@
 import Head from "next/head";
 import SectionCards from "../../components/card/section-cards";
 import NavBar from "../../components/nav/navbar";
-
+import styles from "../../styles/MyList.module.css";
 const MyList = () => {
   return (
     <div>
@@ -9,9 +9,9 @@ const MyList = () => {
         <title>My list</title>
       </Head>
 
-      <main>
+      <main className={styles.main}>
         <NavBar />
-        <div>
+        <div className={styles.sectionWrapper}>
           <SectionCards title="My List" videos={[]} size="small" />
         </div>
       </main>
