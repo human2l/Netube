@@ -9,7 +9,6 @@ import {
   getWatchItAgainVideos,
 } from "../lib/videos";
 import redirectUserCheck from "../utils/redirectUser";
-import { verifyToken } from "../lib/utils";
 
 export const getServerSideProps = async (ctx) => {
   // check if token valid or redirect to login page
