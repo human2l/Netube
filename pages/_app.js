@@ -15,11 +15,7 @@ function MyApp({ Component, pageProps }) {
       if (!isLoggedIn) {
         Router.push("/login");
       }
-      if (isLoggedIn) {
-        Router.push("/");
-      } else {
-        Router.push("/login");
-      }
+      setIsLoading(false);
     })();
   }, []);
 
