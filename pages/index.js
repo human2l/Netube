@@ -8,11 +8,16 @@ import {
   getPopularVideos,
   getWatchItAgainVideos,
 } from "../lib/videos";
+import redirectUserCheck from "../utils/redirectUser";
 import { verifyToken } from "../lib/utils";
 
 export const getServerSideProps = async (ctx) => {
-  const token = ctx.req.cookies.token;
-  const userId = await verifyToken(token);
+  // check if token valid or redirect to login page
+  const { userId, token, redirectValue } = await redirectUserCheck(ctx);
+  if (!userId) {
+    return redirectValue;
+  }
+
   const watchItAgainVideos = await getWatchItAgainVideos(userId, token);
   const disneyVideos = await getVideos("disney trailer");
   const productivityVideos = await getVideos("productivity");
