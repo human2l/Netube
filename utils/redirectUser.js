@@ -5,7 +5,7 @@ const redirectUserCheck = async (ctx) => {
   const userId = await verifyToken(token);
   if (!userId) {
     return {
-      redirecValue: {
+      redirectValue: {
         props: {},
         redirect: {
           destination: "/login",
