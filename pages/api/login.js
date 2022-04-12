@@ -11,6 +11,7 @@ const login = async (req, res) => {
       console.log(didToken);
       // invoke Magic
       const metadata = await magicAdmin.users.getMetadataByToken(didToken);
+      console.log(metadata);
       // create jwt
       const token = jwt.sign(
         {
