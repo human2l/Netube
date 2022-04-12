@@ -13,6 +13,8 @@ export async function middleware(req, ev) {
     return NextResponse.next();
   } else {
     // if unauth, redirect to login
-    return NextResponse.redirect(`${req.nextUrl.origin}/login`);
+    const url = req.nextUrl.clone();
+    url.pathname = "/login";
+    return NextResponse.redirect(url);
   }
 }
