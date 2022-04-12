@@ -1,16 +1,13 @@
 import Head from "next/head";
 import SectionCards from "../../components/card/section-cards";
 import NavBar from "../../components/nav/navbar";
+import { verifyToken } from "../../lib/utils";
 import { getMyListVideos } from "../../lib/videos";
 import styles from "../../styles/MyList.module.css";
-import redirectUserCheck from "../../utils/redirectUser";
 
 export const getServerSideProps = async (ctx) => {
-  // check if token valid or redirect to login page
-  const { userId, token, redirectValue } = await redirectUserCheck(ctx);
-  if (!userId) {
-    return redirectValue;
-  }
+  const token = ctx.req.cookies.token;
+  const userId = await verifyToken(token);
   const myListVideos = await getMyListVideos(userId, token);
 
   return {
