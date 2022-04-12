@@ -35,7 +35,7 @@ const login = async (req, res) => {
       setTokenToCookie(token, res);
       return res.send({ done: true });
     } catch (error) {
-      console.log("Something went wrong logging in through api", error);
+      console.error("Something went wrong logging in through api", error);
       return res.status(500).send({ done: false });
     }
   }

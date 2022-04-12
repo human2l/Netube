@@ -52,8 +52,7 @@ const Video = ({ video }) => {
     setToggleLike(toggleDislike);
     setToggleDislike(newToggleDislike);
     const favourited = newToggleDislike ? 0 : 1;
-    const response = await favouriteVideo(favourited);
-    // console.log(await response.json());
+    await favouriteVideo(favourited);
   };
 
   const handleToggleLike = async () => {
@@ -61,8 +60,7 @@ const Video = ({ video }) => {
     setToggleDislike(toggleLike);
     setToggleLike(newToggleLike);
     const favourited = newToggleLike ? 1 : 0;
-    const response = await favouriteVideo(favourited);
-    // console.log(await response.json());
+    await favouriteVideo(favourited);
   };
 
   const favouriteVideo = async (favourited) => {
