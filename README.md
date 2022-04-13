@@ -34,6 +34,10 @@ favourited: 1 for like, 2 for dislike.
 
 <img src="README.assets/Screen Shot 2022-04-01 at 1.12.12 PM.png" alt="Screen Shot 2022-04-01 at 1.12.12 PM" style="zoom:50%;" />
 
+# Demo
+
+https://netube.vercel.app/
+
 ## Getting Started
 
 First, run the development server:
