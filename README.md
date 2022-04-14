@@ -1,5 +1,9 @@
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
+# Demo
+
+https://netube.vercel.app/
+
 # Project Architecture
 
 SSG: Static site regeneration
@@ -33,10 +37,6 @@ favourited: 1 for like, 2 for dislike.
 <img src="README.assets/Screen Shot 2022-04-01 at 1.11.59 PM.png" alt="Screen Shot 2022-04-01 at 1.11.59 PM" style="zoom:50%;" />
 
 <img src="README.assets/Screen Shot 2022-04-01 at 1.12.12 PM.png" alt="Screen Shot 2022-04-01 at 1.12.12 PM" style="zoom:50%;" />
-
-# Demo
-
-https://netube.vercel.app/
 
 ## Getting Started
 
