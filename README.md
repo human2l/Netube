@@ -2,6 +2,8 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 
 # Demo
 
+Note: Database and CDN service applied free tier which is located in US, this will cause high latency.
+
 https://netube.vercel.app/
 
 # Project Architecture
